@@ -6,19 +6,21 @@ import { useState, useEffect } from 'react';
 
 function App() {
 const [todo, setTodo] = useState("");
-const handleTodoChange= () => {
+
+const handleTodoChange= (e) => {
   setTodo(e.target.value)
 }
   //write
   const writeToDatabase = () => {
     const uuid = uid()
-    set(ref(db, '/${uuid'), {
+    set(ref(db, '/${uuid}'), {
       todo, 
       uuid,
     });
 
     setTodo("");
   };
+  
   return (
     <div className="App">
       <input type="text" value={todo} onChange={handleTodoChange}/>
