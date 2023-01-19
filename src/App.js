@@ -15,8 +15,9 @@ const handleTodoChange= (e) => {
   //read
   useEffect(() => {
     onValue(ref(db), snapshot => {
+      setTodos([]);
       const data = snapshot.val();
-      if(data == null){
+      if(data !== null){
         Object.values(data).map(todo => {
           setTodos(oldArray => [...oldArray, todo])
         });
