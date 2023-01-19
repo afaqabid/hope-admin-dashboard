@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import { db } from './firebase'
 import { uid } from 'uid';
 import { set, ref } from 'firebase/database';
@@ -12,15 +12,16 @@ const handleTodoChange= (e) => {
 }
   //write
   const writeToDatabase = () => {
-    const uuid = uid()
-    set(ref(db, '/${uuid}'), {
+    const uuid = uid() 
+    set(ref(db, `/${uuid}`), {
       todo, 
       uuid,
+      
     });
 
     setTodo("");
   };
-  
+
   return (
     <div className="App">
       <input type="text" value={todo} onChange={handleTodoChange}/>
