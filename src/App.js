@@ -49,7 +49,7 @@ const handleTodoChange= (e) => {
   }
 
   const handleSubmitChange = () => {
-    update(ref(db, `/${tempuid}`), {
+    update(ref(db, `/${tempUuid}`), {
       todo,
       uuid: tempUuid,
     }); 
@@ -70,7 +70,7 @@ const handleTodoChange= (e) => {
       <input type="text" value={todo} onChange={handleTodoChange}/>
       {isEdit ? (
         <>
-        <button onClick={handleSubmitChange}>SubmiChange</button>
+        <button onClick={handleSubmitChange}>Submit Change</button>
         <button onClick={() => {
           setIsEdit(false);
           setTodo("");
