@@ -3,7 +3,6 @@ import { db } from './firebase'
 import { uid } from 'uid';
 import { set, ref, onValue, remove, update } from 'firebase/database';
 import { useState, useEffect } from 'react';
-//import { computeHeadingLevel } from "@testing-library/react";
 
 function App() {
 const [todo, setTodo] = useState("");
@@ -64,7 +63,6 @@ const handleTodoChange= (e) => {
 
   }
 
-
   return (
     <div className="App">
       <input type="text" value={todo} onChange={handleTodoChange}/>
@@ -91,3 +89,4 @@ const handleTodoChange= (e) => {
 }
 
 export default App;
+
