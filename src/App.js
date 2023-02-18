@@ -1,15 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import Login from './pages/Login';
-import Home from './pages/Home'
+import Router from './routes';
+import ThemeProvider from './theme';
+import ScrollToTop from './components/scroll-to-top';
+import { StyledChart } from './components/chart';
+import { AuthProvider } from './auth';
 
-function App() {
+// ----------------------------------------------------------------------
+
+export default function App() {
   return (
-    <div className="App">
-      {/* <Login/> */}
-      <Home/>
-    </div>
+    <ThemeProvider>
+        <StyledChart />
+        <Router />
+      </ThemeProvider>
   );
 }
-
-export default App;
