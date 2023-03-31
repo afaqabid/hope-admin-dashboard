@@ -1,24 +1,34 @@
-import { useState } from 'react';
-import { alpha } from '@mui/material/styles';
-import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover, Link } from '@mui/material';
-import account from '../../../_mock/account';
-import { useNavigate } from 'react-router-dom';
-import { auth } from '../../../firebase/firebase';
+import { useState } from "react";
+import { alpha } from "@mui/material/styles";
+import {
+  Box,
+  Divider,
+  Typography,
+  Stack,
+  MenuItem,
+  Avatar,
+  IconButton,
+  Popover,
+  Link,
+} from "@mui/material";
+import account from "../../../_mock/account";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../../firebase/firebase";
 
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
   {
-    label: 'Home',
-    icon: 'eva:home-fill',
+    label: "Home",
+    icon: "eva:home-fill",
   },
   {
-    label: 'Profile',
-    icon: 'eva:person-fill',
+    label: "Profile",
+    icon: "eva:person-fill",
   },
   {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
+    label: "Settings",
+    icon: "eva:settings-2-fill",
   },
 ];
 
@@ -34,26 +44,25 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(null);
   };
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const goToHome = () =>{
-        navigate('/dashboard', { replace: true });
-    }
+  const goToHome = () => {
+    navigate("/dashboard", { replace: true });
+  };
 
-    const goToProfile = () =>{
-        navigate('/dashboard/profile', { replace: true });
-    }
+  const goToProfile = () => {
+    navigate("/dashboard/profile", { replace: true });
+  };
 
-
-    const handleLogout = () => {
-      auth.signOut().then(() => {
+  const handleLogout = () => {
+    auth
+      .signOut()
+      .then(() => {
         console.log("User Signed Out Successfully!");
-        navigate('/login', { replace: true });
+        navigate("/login", { replace: true });
       })
-      .catch(error => alert(error.message))
-    }
-    
-
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <>
@@ -62,13 +71,13 @@ export default function AccountPopover() {
         sx={{
           p: 0,
           ...(open && {
-            '&:before': {
+            "&:before": {
               zIndex: 1,
               content: "''",
-              width: '100%',
-              height: '100%',
-              borderRadius: '50%',
-              position: 'absolute',
+              width: "100%",
+              height: "100%",
+              borderRadius: "50%",
+              position: "absolute",
               bgcolor: (theme) => alpha(theme.palette.grey[900], 0.8),
             },
           }),
@@ -81,22 +90,22 @@ export default function AccountPopover() {
         open={Boolean(open)}
         anchorEl={open}
         onClose={handleClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
         PaperProps={{
           sx: {
             p: 0,
             mt: 1.5,
             ml: 0.75,
             width: 180,
-            '& .MuiMenuItem-root': {
-              typography: 'body2',
+            "& .MuiMenuItem-root": {
+              typography: "body2",
               borderRadius: 0.75,
             },
           },
         }}
       >
-        <Box sx={{ my: 1.5, px: 2.5 }}>
+        {/* <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
             {account.displayName}
           </Typography>
@@ -105,7 +114,7 @@ export default function AccountPopover() {
           </Typography>
         </Box>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+        <Divider sx={{ borderStyle: 'dashed' }} /> */}
 
         {/* <Stack sx={{ p: 1 }}>
           {MENU_OPTIONS.map((option) => (
@@ -116,15 +125,11 @@ export default function AccountPopover() {
         </Stack> */}
 
         <Stack sx={{ p: 1 }}>
-        <MenuItem onClick={goToHome}>
-          Home
-        </MenuItem>
-        <MenuItem onClick={goToProfile}>
-          Profile
-        </MenuItem>
+          <MenuItem onClick={goToHome}>Home</MenuItem>
+          <MenuItem onClick={goToProfile}>Profile</MenuItem>
         </Stack>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+        <Divider sx={{ borderStyle: "dashed" }} />
 
         <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
           Log Out
